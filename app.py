@@ -1,4 +1,7 @@
 import os
+import logging
+
+
 
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for)
@@ -22,9 +25,12 @@ def hello():
 
    if name:
        print('Request for hello page received with name=%s' % name)
+       logging.info('This is an info message: connection successful')
        return render_template('hello.html', name = name)
+       
    else:
        print('Request for hello page received with no name or blank name -- redirecting')
+       logging.error('This is error !!!')
        return redirect(url_for('index'))
 
 
